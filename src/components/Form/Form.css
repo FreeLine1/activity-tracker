@@ -1,0 +1,87 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.header {
+    background-color: lightskyblue;
+    margin-top: 10px;
+    border: 2px solid grey;
+    border-radius: 10px;
+    text-align: center;
+    width: 70%;
+    height: 40%;
+}
+
+.add-activity {
+    background-color: palegreen;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+    border: 2px solid grey;
+    border-radius: 10px;
+    width: 70%;
+    height: 80px;
+}
+
+input {
+    border: 1px solid grey;
+    border-radius: 3px;
+    width: 100px;
+    height: 30px;
+    margin: 10px;
+}
+
+.save {
+    border: none;
+    border-radius: 3px;
+    color: white;
+    background-color: #3e4444;
+    width: 120px;
+    height: 35px;
+    margin: 10px;
+}
+
+button:hover {
+    background-color: #4d4d4d;
+}
+
+select {
+    border-radius: 3px;
+    padding: 3px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 160px;
+    height: 35px;
+    margin: 10px;
+    margin-right: 25px;
+
+}
+
+p {
+    font-size: 17px;
+    font-weight: bold;
+}
+
+.start-time {
+    margin-left: 25px;
+}
+select {
+    background-image:
+            linear-gradient(45deg, transparent 50%, gray 50%),
+            linear-gradient(135deg, gray 50%, transparent 50%),
+            linear-gradient(to right, #ccc, #ccc);
+    background-position:
+            calc(100% - 20px) calc(1em + 2px),
+            calc(100% - 15px) calc(1em + 2px),
+            calc(100% - 2.5em) 0.5em;
+    background-size:
+            5px 5px,
+            5px 5px,
+            1px 1.5em;
+    background-repeat: no-repeat;
+}

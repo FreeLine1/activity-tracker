@@ -1,4 +1,4 @@
-.App {
+т.App {
   text-align: center;
 }
 
@@ -35,4 +35,20 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.main-content {
+  width: 70%;
+  margin: auto;
+  display: grid;
+  grid-template-columns: 71% 26%;
+  grid-gap: 3%;
+}
+
+.main-container {
+  width: 100%;
+}
+
+.main-container > div {
+  text-align: center;
 }
