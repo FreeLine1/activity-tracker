@@ -3,7 +3,7 @@ import date from "date-and-time";
 import {useEffect, useState} from "react";
 
 const Records = ({data}) => {
-// console.log(recordsData);
+console.log(data);
     useEffect(() => {
 
     }, [])
@@ -16,7 +16,7 @@ const Records = ({data}) => {
             <div className="records-data">
             <p>{date.format(now, pattern)}</p>
             <p>{data.distanceRide?data.distanceRide[0].distance : null}</p>
-            {/*<p> {console.log(data)}</p>*/}
+            {}
             </div>
             <p style={{"text-align": "center"}}>Longest run:</p>
             <div className="records-data">

@@ -4,16 +4,36 @@ import date from 'date-and-time';
 const RecentActivities = (props) => {
     const now = new Date();
     const pattern = date.compile('MMMM DD');
+
+
+    let durationTime = [...props.data].reverse().map(e => {
+
+        let difference = +e.finish_time - +e.start_time; // /360000
+
+        let hours = Math.floor(difference/1000/60/60);
+        difference -= hours*1000*60*60;
+
+        let minutes = Math.floor(difference/1000/60);
+        difference -= minutes*1000*60;
+        console.log(+e.finish_time);
+        return [hours + ' h ' + minutes + ' min '];
+
+        }
+    )
+
+    console.log(durationTime);
+
     return (
         <div className="activities-container">
             <div className="activity">
-                    {props.data ?[...props.data].reverse().map(e =>
+                    {props.data ?[...props.data].reverse().map((e, i) =>
+
                         <div>
                             <p>{date.format(now, pattern)}</p>
                             <p> {e.activity} </p>
                             <p> {e.distance + ' km'} </p>
-                            <p> {e.finish_time} </p>
-                            <p> {e.start_time} </p>
+                            <p> {durationTime[i]} </p>
+                            <p> {} </p>
                         </div>
                     ) : null}
             </div>

@@ -21,6 +21,8 @@ function App() {
             .then((response) => setTotalData(response.data))
     }
 
+
+
     useEffect(() => {
         getData();
     }, [])

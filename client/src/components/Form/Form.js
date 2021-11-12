@@ -1,16 +1,16 @@
 import {useRef, useState} from 'react';
 import axios from 'axios';
-import DatePicker from "react-datepicker";
+import DatePicker, {registerLocale} from "react-datepicker";
 import './DataPicker.css';
 import './Form.css';
-
-
+import eu from 'date-fns/locale/eu';
+registerLocale('eu', eu)
 
 const Form = (props) => {
     const [form, setForm] = useState({});
     const [startDate, setStartDate] = useState(new Date());
-    const inputStartRef = useRef();
-    const inputFinishRef = useRef();
+    const [finishDate, setFinishDate] = useState(new Date());
+
     const inputDistRef = useRef();
     const selectRef = useRef();
 
@@ -22,19 +22,23 @@ const Form = (props) => {
     const dropHandler = (e) => {
       setForm({...form, activity: e.target.value})
     }
-    // console.log(form);
 
+    const startPickerHandler = (date) => {
+        setStartDate(date);
+        setForm({...form, startDate: +date})
+    }
+    const finishPickerHandler = (date) => {
+        setFinishDate(date);
+        setForm({...form, finishDate: +date})
+    }
 
     function setData() {
 
-        console.log(form.start);
-       if (form.start != null && form.distance != null && form.finish != null && form.activity != null ) {
+       if (form.distance != null && form.activity !== undefined ) {
            axios.post('http://localhost:3006/', form).then(()=>props.onUpdate())
-           inputStartRef.current.value = "";
-           inputFinishRef.current.value = "";
            inputDistRef.current.value = "";
            selectRef.current.value = "Select activity type";
-console.log(props)
+
        }else {
            alert("Please fill in all fields");
        }
@@ -51,30 +55,43 @@ console.log(props)
                 <div className="add-activity">
                     <p>Add new activity:</p>
                     <DatePicker
+                        locale="eu"
+                        name="startDate"
                         selected={startDate}
-                        onChange={(date) => setStartDate(date)}
+                        onChange={startPickerHandler}
                         showTimeSelect
                         showTimeSelectOnly
                         timeIntervals={15}
                         timeCaption="Time"
-                        dateFormat="h:mm aa"
+                        dateFormat="HH:mm"
                     />
-                    <input
-                        ref={inputStartRef}
-                        name = "start"
-                        onChange={changeHandler}
-                        type="text"
-                        placeholder = "Start time"
-                        className = "start-time"
+                    <DatePicker
+                        locale="eu"
+                        name="startDate"
+                        selected={finishDate}
+                        onChange={finishPickerHandler}
+                        showTimeSelect
+                        showTimeSelectOnly
+                        timeIntervals={15}
+                        timeCaption="Time"
+                        dateFormat="HH:mm"
                     />
-                    <input
-                        ref={inputFinishRef}
-                        name = "finish"
-                        onChange={changeHandler}
-                        type = "text"
-                        placeholder = "Finish time"
-                        className = "finish-time"
-                    />
+                    {/*<input*/}
+                    {/*    ref={inputStartRef}*/}
+                    {/*    name = "start"*/}
+                    {/*    onChange={changeHandler}*/}
+                    {/*    type="text"*/}
+                    {/*    placeholder = "Start time"*/}
+                    {/*    className = "start-time"*/}
+                    {/*/>*/}
+                    {/*<input*/}
+                    {/*    ref={inputFinishRef}*/}
+                    {/*    name = "finish"*/}
+                    {/*    onChange={changeHandler}*/}
+                    {/*    type = "text"*/}
+                    {/*    placeholder = "Finish time"*/}
+                    {/*    className = "finish-time"*/}
+                    {/*/>*/}
                     <input
                         ref={inputDistRef}
                         name = "distance"

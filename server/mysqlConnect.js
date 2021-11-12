@@ -30,7 +30,7 @@ connection.connect(function(err){
 app.use(bodyParser.json())
 
 app.post('/', (req, res) => {
-    const sql = `INSERT INTO activities (start_time , finish_time, distance ,activity) VALUES (\"${req.body.start}\" , \"${req.body.finish}\" , \"${req.body.distance}\" , \"${req.body.activity}\")`
+    const sql = `INSERT INTO activities (start_time , finish_time, distance ,activity) VALUES (\"${req.body.startDate}\" , \"${req.body.finishDate}\" , \"${req.body.distance}\" , \"${req.body.activity}\")`
     connection.query(sql, (err, result) => {
         if(err) console.log(err);
         else console.log("Data successfully sent");
@@ -40,7 +40,7 @@ app.post('/', (req, res) => {
 })
 
 app.get('/records', function(req, res) {
-    connection.execute("SELECT MAX(distance) AS distance FROM activities.activities WHERE activity = \"Ride\"",
+            connection.execute("SELECT MAX(distance) AS distance FROM activities.activities WHERE activity = \"Ride\"",
 
         function (err, results, fields) {
             console.log(err);
@@ -50,9 +50,28 @@ app.get('/records', function(req, res) {
 
                 function (err, results, fields) {
                     console.log(err);
+                    let distanceRun = results;
                     // console.log(results);
-                    res.send({distanceRide, distanceRun : results})
+
+                    connection.execute("SELECT start_time, finish_time FROM activities.activities WHERE activity = \"Run\"",
+
+                        function (err, results, fields) {
+                            console.log(err);
+                            console.log(results);
+                            let startRun = results[results.length-1];
+
+                            connection.execute("SELECT start_time, finish_time FROM activities.activities WHERE activity = \"Ride\"",
+
+                                function (err, results, fields) {
+                                    console.log(err);
+                                    console.log(results);
+
+                                    res.send({distanceRide, distanceRun, startRun, startRide: results[results.length-1]});
+                                });
+                        });
                 });
+
+
         });
 
 })
