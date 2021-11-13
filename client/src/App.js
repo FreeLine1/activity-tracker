@@ -9,7 +9,7 @@ import axios from "axios";
 
 function App() {
     const [data, setData] = useState([])
-    const [recordsData, setRecordsData] = useState({})
+    const [recordsData, setRecordsData] = useState([])
     const [totalData, setTotalData] = useState([])
 
     function getData() {

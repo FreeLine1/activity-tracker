@@ -34,10 +34,11 @@ const Form = (props) => {
 
     function setData() {
 
-       if (form.distance != null && form.activity !== undefined ) {
+       if (form.distance != null && form.activity !== undefined) {
            axios.post('http://localhost:3006/', form).then(()=>props.onUpdate())
            inputDistRef.current.value = "";
            selectRef.current.value = "Select activity type";
+           console.log(form)
 
        }else {
            alert("Please fill in all fields");
