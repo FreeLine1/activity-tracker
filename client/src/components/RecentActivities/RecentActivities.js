@@ -6,10 +6,9 @@ const RecentActivities = (props) => {
     const pattern = date.compile('MMMM DD');
 
 
-
     let durationTime = [...props.data].reverse().map(e => {
 
-            let difference = +e.finish_time - +e.start_time; // /360000
+            let difference = +e.finish_time - +e.start_time;
 
             let hours = Math.floor(difference / 1000 / 60 / 60);
             difference -= hours * 1000 * 60 * 60;
@@ -17,11 +16,7 @@ const RecentActivities = (props) => {
             let minutes = Math.floor(difference / 1000 / 60);
             difference -= minutes * 1000 * 60;
 
-            if(minutes = 0){
-                return [hours + ' h '];
-
-            }else
-                return [hours + ' h ' + minutes + ' min '];
+            return [hours + ' h ' + minutes + ' min '];
         }
     )
 
@@ -38,11 +33,11 @@ const RecentActivities = (props) => {
                         <p> {e.distance + ' km'} </p>
                         <p> {durationTime[i]} </p>
                         <p> {
-                            Number.isInteger(((e.distance / ((+e.finish_time - +e.start_time)/3600000))))
+                            Number.isInteger(((e.distance / ((+e.finish_time - +e.start_time) / 3600000))))
                                 ?
-                                Math.ceil(((e.distance / ((+e.finish_time - +e.start_time)/3600000)))) + " km/h "
+                                Math.ceil(((e.distance / ((+e.finish_time - +e.start_time) / 3600000)))) + " km/h "
                                 :
-                                ((e.distance / ((+e.finish_time - +e.start_time)/3600000))).toFixed(1) + " km/h "
+                                ((e.distance / ((+e.finish_time - +e.start_time) / 3600000))).toFixed(1) + " km/h "
                         } </p>
                     </div>
                 ) : null}

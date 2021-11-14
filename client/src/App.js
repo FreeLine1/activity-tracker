@@ -22,25 +22,24 @@ function App() {
     }
 
 
-
     useEffect(() => {
         getData();
     }, [])
-  return (
-    <>
-        <div className="main-container">
-            <div><Form onUpdate={getData} /></div>
-        <div className="main-content">
-            <RecentActivities data={data} />
-            <div>
-                <Records data={recordsData} />
-                <Total data={totalData} />
+    return (
+        <>
+            <div className="main-container">
+                <div><Form onUpdate={getData}/></div>
+                <div className="main-content">
+                    <RecentActivities data={data}/>
+                    <div>
+                        <Records data={recordsData}/>
+                        <Total data={totalData}/>
+                    </div>
+                </div>
             </div>
-        </div>
-        </div>
 
-    </>
-  );
+        </>
+    );
 }
 
 export default App;

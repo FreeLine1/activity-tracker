@@ -77,22 +77,6 @@ const Form = (props) => {
                         timeCaption="Time"
                         dateFormat="HH:mm"
                     />
-                    {/*<input*/}
-                    {/*    ref={inputStartRef}*/}
-                    {/*    name = "start"*/}
-                    {/*    onChange={changeHandler}*/}
-                    {/*    type="text"*/}
-                    {/*    placeholder = "Start time"*/}
-                    {/*    className = "start-time"*/}
-                    {/*/>*/}
-                    {/*<input*/}
-                    {/*    ref={inputFinishRef}*/}
-                    {/*    name = "finish"*/}
-                    {/*    onChange={changeHandler}*/}
-                    {/*    type = "text"*/}
-                    {/*    placeholder = "Finish time"*/}
-                    {/*    className = "finish-time"*/}
-                    {/*/>*/}
                     <input
                         ref={inputDistRef}
                         name = "distance"

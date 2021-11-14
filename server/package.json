@@ -2,9 +2,9 @@
   "name": "server",
   "version": "1.0.0",
   "description": "activity tracker",
-  "main": "mysqlConnect.js",
+  "main": "server.js",
   "scripts": {
-    "start": "nodemon mysqlConnect.js"
+    "start": "nodemon server.js"
   },
   "author": "Maxym Demchyshyn",
   "license": "ISC",
